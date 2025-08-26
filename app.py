@@ -46,12 +46,6 @@ def main():
          "Level 4 - Acceptable", "Level 5 - Exceeds Expectations", "Level 6 - Outstanding"]
     )
     
-    # Clear chat button in sidebar
-    st.sidebar.divider()
-    if st.sidebar.button("🗑️ Clear Chat"):
-        current_chatbot.clear_history()
-        st.rerun()
-    
     # Extract level number
     level_num = int(level.split()[1])
     
@@ -65,6 +59,12 @@ def main():
         game_state['current_character'] = game_state['characters'][level_num]
     
     current_chatbot = game_state['current_chatbot']
+    
+    # Clear chat button in sidebar (moved after chatbot initialization)
+    st.sidebar.divider()
+    if st.sidebar.button("🗑️ Clear Chat"):
+        current_chatbot.clear_history()
+        st.rerun()
     current_character = game_state['characters'][level_num]
     
     # Instructions
